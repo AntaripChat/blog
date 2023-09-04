@@ -17,7 +17,9 @@ router.post('/signin',async(req,res)=>{
     const isPasswordValid = await User.findOne({password:req.body.password});
 
     if(isPasswordValid == null){
-        return res.redirect('/signin');
+        return res.render("signin",{
+            error : "Incorrect userid or password",
+        });
     }
 
     
@@ -37,7 +39,10 @@ router.post('/signup',async(req,res)=>{
         userid,
         password,
     })
-    return res.redirect('/');
+    //return res.redirect('/');
+    return res.render("home",{
+            msg : "Your Data is Save",
+        });
 })
 
 
